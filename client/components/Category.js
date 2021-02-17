@@ -26,7 +26,11 @@ render() {
   let arrOfCategories= [];
   const categories = this.props.state.user.categories;
   for (let i=0; i < categories.length; i++) {
-    arrOfCategories.push(<button> {categories[i].category}</button>)
+    arrOfCategories.push(
+      <button> 
+        {categories[i].category}
+      </button>
+      );
 
   // const newCategory
 
