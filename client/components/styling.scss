@@ -1,0 +1,87 @@
+
+
+// @media screen and (max-width:767.98px){
+//   body{
+//       display: flex;
+//       flex-direction: column;
+//       justify-content: space-between;
+//       align-items: center;
+//       background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 35%, rgba(0,212,255,1) 100%);
+//   }
+// }
+// * {
+//   box-sizing: border-box;
+// }
+
+$background-color: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 35%, rgba(0,212,255,1) 100%);
+
+body{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  background: #43C6AC;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #191654, #43C6AC);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to left, #191654, #43C6AC); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  
+}
+
+#top {
+  display:grid;
+  justify-items: center;
+  color: white;
+  margin-top: 15%;
+}
+
+#mid {
+  display:grid;
+  justify-items: center;
+  margin-top: 15%;
+  color: white;
+}
+
+
+img {
+display:grid;
+justify-items: center;
+margin-top: 35%;
+margin-bottom: 10%;
+height: 180px;
+width: 180px;
+// background:transparent;
+// position: relative;
+
+//     overflow: hidden;
+}
+
+
+$margin: 15px;
+
+input {
+  margin: $margin;
+}
+
+// @media (hover: hover) {
+//   button {
+//       color: rebeccapurple;
+//   }
+// }
+
+button {
+  display:grid;
+  justify-items: center;
+  margin: $margin;
+  width: 100%;
+  &:hover {
+    background:hotpink;
+  }
+}
+
+
+#log{
+  background-color: green;
+}
+#createacc{
+  background-color: lightblue;
+}
+
