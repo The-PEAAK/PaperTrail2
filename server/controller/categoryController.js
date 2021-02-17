@@ -45,9 +45,9 @@ categoryController.createCategory = (req, res, next) => {
     email: res.locals.user.email 
   };
 
-  console.log('Adding new category to user >>> ', res.locals.user.fullName);
+  // console.log('Adding new category to user >>> ', res.locals.user.fullName);
   let userCategories = res.locals.user.categories;
-  console.log('Existing categories ===> ',userCategories);
+  // console.log('Existing categories ===> ',userCategories);
   const newCategory = {
     category: req.body.category,
     total: 0,
@@ -55,11 +55,12 @@ categoryController.createCategory = (req, res, next) => {
   }; 
 
   const newCategories = [...res.locals.user.categories, newCategory];
-  console.log('Updated categories array ===> ',userCategories)
+  // console.log('Updated categories array ===> ',userCategories)
   User.findOneAndUpdate(currentUserFilter, {categories: newCategories}, {new: true}).exec()
     .then(updatedUserDocument => {
-      console.log('Create new category => ', updatedUserDocument);
+      // console.log('Create new category => ', updatedUserDocument);
       res.locals.user = updatedUserDocument;
+      console.log('res.locals.user in categoryController', res.locals.user.categories)
       return next();
     })
     .catch(err => next({

@@ -26,6 +26,7 @@ module.exports = {
     proxy: {
       '/': 'http://localhost:3000',
       '/user': 'http://localhost:3000',
+      '/**/*':'http://localhost:3000',
     },
   },
   module: {
@@ -40,7 +41,7 @@ module.exports = {
       },
       {
         test: /\.s?css/i,
-        exclude: /node_modules/,
+        // exclude: /node_modules/,
         use: ['style-loader', 'css-loader', 'sass-loader'],
       },
       {
