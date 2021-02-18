@@ -125,17 +125,6 @@ class Totals extends Component {
             <p>Create New Category</p>
           </button>
         </form>
-        <div>
-          <ImageUploader
-            withIcon={false}
-            withPreview={true}
-            label=''
-            buttonText='Upload Receipt'
-            onChange={this.onChangeFile}
-            imgExtension={[".jpg", ".gif", ".png", ".gif", ".svg"]}
-            maxFileSize={1000000}
-          />
-        </div>
         <div id='pastExpenses'>
           <form id='pastExpenses'>
             {/* here console.log renderAllExpenses()) */}

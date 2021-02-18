@@ -22,7 +22,7 @@ class CreateAccount extends Component {
         <div id='all'>
           <div id='top'>
             <h1>Create Account</h1>
-            {/* <img id='logo' src="logo.png"></img> */}
+            {/* <img id='logo2' src="money-bag.png"></img> */}
             </div>
 
           <form onSubmit={this.props.handleCreation}> 

@@ -9,7 +9,7 @@ import {
   Link
 } from "react-router-dom";
 import ImageUploader from "react-images-upload";
-
+const axios = require("axios")
 
 class Category extends Component {
   constructor(props) {
@@ -19,21 +19,50 @@ class Category extends Component {
     }
     this.onChangeFile = this.onChangeFile.bind(this);
     this.addItem = this.addItem.bind(this);
+    this.receiptSubmit = this.receiptSubmit.bind(this);
+    this.onChange = this.onChange.bind(this);
   }
 
+  receiptSubmit(e) {
+    e.preventDefault();
 
-// addCategory(){
-// //POST??
-// }
+    const formData = new FormData();
+
+    const file = this.state.file;
+    formData.append("receiptImage", file);
+
+    // console.log("formData", formData);
+    const config = {
+      headers: {
+        "content-type": "multipart/form-data",
+      },
+    };
+    axios
+      .post("/upload", formData, config)
+      .then((response) => {
+        console.log("====================API PRICE BELOW===============");
+        console.log("YOOOOO THIS IS IT MAN", response.data);
+      })
+      .catch((err) => {
+        console.log("error in POST request to send image to backend");
+      });
+  }
+
+  onChange(e) {
+    this.setState({
+      ...this.state,
+      file: e.target.files[0],
+    });
+  }
+
 addItem(e) {
   e.preventDefault();
   let files = {};
   let dataArr = [];
   const catName = document.getElementById('newCategory').value;
-  console.log('catName', catName)
+  // console.log('catName', catName)
   let looped = this.state.file;
   for(let i = 0; i < looped.length; i++) {
-    // console.log('looped Data', looped[i].name)
     files = {
       'lastModified'    : looped[i].lastModified,
       'lastModifiedDate': looped[i].lastModifiedDate,
@@ -41,10 +70,9 @@ addItem(e) {
       'size'       : looped[i].size,
       'type'       : "image/png",
     }
-    dataArr.push(files)
+    // dataArr.push(files)
   }
 console.log('dataArr after loop', dataArr)
-// console.log(this.props.state.user.categories)
   const receiptRequest = JSON.stringify({email: this.props.state.user.email, password: this.props.state.user.password, category: catName, receiptData: dataArr});  
   fetch('/test', {
     method: 'POST',
@@ -64,29 +92,36 @@ onChangeFile(receipt) {
   })
 }
 
-
 render() {
-  // console.log('propssss', this.props.state.user.categories)
   let arrOfCategories= [];
   const categories = this.props.state.user.categories;
   for (let i=0; i < categories.length; i++) {
     arrOfCategories.push(
-    <button id = "newReceipt"> 
-      {categories[i].category}
-      <ImageUploader
-            key = {`imgUploader${i}`}
-            withIcon={false}
-            withPreview={true}
-            label=''
-            buttonText='Upload Receipt'
-            onChange={this.onChangeFile}
-            imgExtension={[".jpg", ".gif", ".png", ".gif", ".svg"]}
-            maxFileSize={1000000}
-          />
-          <button onClick = {this.addItem}>Save</button>
-    </button>)
+    
+    <form onSubmit={this.receiptSubmit}>
+      <button> 
+      <input
+        id='addPic'
+        name='receiptImage'
+        type='file'
+        onChange={this.onChange}
+      />
+        {categories[i].category}
+        <ImageUploader
+              key = {`imgUploader${i}`}
+              withIcon={false}
+              withPreview={true}
+              label=''
+              buttonText='Upload Receipt'
+              onChange={this.onChangeFile}
+              imgExtension={[".jpg", ".gif", ".png", ".gif", ".svg"]}
+              maxFileSize={1000000}
+            />
+        <button onClick = {this.addItem}>Save</button>
+    </button>
+    </form>
+    )
   };
-  // console.log('state after onchangeFile', this.state.file)
 
     return (
       <div id='all'>
@@ -109,11 +144,11 @@ render() {
                 <Link to = "/totals" style = {styles.container}>Totals</Link>
             </button>
             </div>
-            <Link to = "/"> 
+            {/* <Link to = "/"> 
               <button className = "btn btn-secondary">
                 Logout
               </button>
-            </Link>
+            </Link> */}
       </div>
     );
   }

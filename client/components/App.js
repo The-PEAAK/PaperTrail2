@@ -53,10 +53,8 @@ class App extends Component {
         this.setState({...this.state, user: result.user});
       } 
     })
-    .catch(err => console.log('error sending the request:', err) )
-
-
-  }
+    .catch(err => console.log('error sending the request:', err))
+  };
 
   funcLogin(event){
     event.preventDefault();
@@ -79,12 +77,8 @@ class App extends Component {
         } 
       })
       .catch(err => console.log('error sending the request:', err) )
-  }
+  };
 
-
-
-
-  
   createNewUser(event){
     event.preventDefault();
     const inputFullName = document.getElementById('inputFullName').value;
@@ -109,7 +103,7 @@ class App extends Component {
       } 
     })
     .catch(err => console.log('error sending the request:', err) )
-   }
+   };
   
   render() {
     // console.log('props', this.props)
