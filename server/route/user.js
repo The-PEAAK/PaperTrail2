@@ -5,7 +5,7 @@ const userController = require('../controller/userController');
 // Login using POST request 
 router.post('/login',
   userController.validateUser,
-  userController.getUser,
+  userController.userCategory,
   (req, res) => {
     return res.status(200).json({
       user: res.locals.user

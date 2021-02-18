@@ -32,13 +32,10 @@ app.use('/category', categoryRouter);
 
 app.use('/', itemRouter);
 
-
 app.get('/build/bundle.js',
   (req, res) => {
     res.status(200).sendFile(path.resolve(__dirname, '../build/bundle.js'));
   });
-
-
 
 // handler for undefined routes
 app.use('*', (req, res) => {
@@ -58,10 +55,9 @@ app.listen(PORT, () => console.log('Listening on port 3000...'));
 
 //////////////// API CALL //////////////////////
 
-
 // const internals = {
 //   url: "https://api.taggun.io/api/receipt/v1/verbose/file",
-//   filePath: ".receipt.jpg",
+//   filePath: "./public/uploads/ReceiptImage.jpg",
 //   taggunApiKey: "4629ce0070d211eb89ec8f979872d304",
 // };
 
@@ -95,7 +91,6 @@ app.listen(PORT, () => console.log('Listening on port 3000...'));
 //   const formData = new FormData();
 
 //   // Add any other POST properties that you require
-//   // Go to https://api.taggun.io to see what other POST properties you require.
 //   formData.append("file", fileStream, {
 //     filename,
 //     contentType: getContentType(filePath),
@@ -117,4 +112,3 @@ app.listen(PORT, () => console.log('Listening on port 3000...'));
 //       return "image/jpg";
 //   }
 // }
-

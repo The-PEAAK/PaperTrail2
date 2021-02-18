@@ -19,6 +19,7 @@ const userSchema = new Schema ({
   userName: {type: String, required: true},
   password: {type: String, required: true},
   email: {type: String, required: true},
+  budget: {type: Number, required: true},
   categories:  [{
     category: String, 
     total: Number,
@@ -27,14 +28,14 @@ const userSchema = new Schema ({
   }]
 })
 
-// userSchema.pre('save', function(next) {
-//   bcrypt.hash(this.password, SALT_WORK_FACTOR, (err, hash) => {
-//     if(err) return next(err);
-//     this.password = hash;
-//     return next();
-//   });
-// });
-// Example add category request 
+userSchema.pre('save', function(next) {
+  bcrypt.hash(this.password, SALT_WORK_FACTOR, (err, hash) => {
+    if(err) return next(err);
+    this.password = hash;
+    return next();
+  });
+});
+// // Example add category request 
 
 // {
 //   type: 'shoes',

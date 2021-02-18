@@ -22,7 +22,7 @@ class CreateAccount extends Component {
         <div id='all'>
           <div id='top'>
             <h1>Create Account</h1>
-            {/* <img id='logo' src="logo.png"></img> */}
+            {/* <img id='logo2' src="money-bag.png"></img> */}
             </div>
 
           <form onSubmit={this.props.handleCreation}> 
@@ -30,6 +30,7 @@ class CreateAccount extends Component {
               <input type="text" className="form-control" id="inputUserName" aria-describedby="userNameHelp" placeholder="Username"/>
               <input type="email" className="form-control" id="inputEmail" aria-describedby="emailHelp" placeholder="Email Address"/>
               <input type="password" id="inputPassword" className="form-control" aria-describedby="passwordHelpInline" placeholder="Password"/>
+              <input type="budget" id="inputBudget" className="form-control" aria-describedby="budgetHelpInline" placeholder="Budget"/>
               <div>
               <button id="createacc" type="Submit" className='btn btn-secondary'  onClick={this.props.handleCreation}>Create Account</button>
               </div>
