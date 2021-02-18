@@ -39,7 +39,7 @@ class App extends Component {
   addCategory(event){
     event.preventDefault();
     const categoryName = document.getElementById('newCategory').value;
-    const categoryRequest = JSON.stringify({email: this.state.user.email , password: this.state.user.password ,category : categoryName});  
+    const categoryRequest = JSON.stringify({email: this.state.user.email , password: this.state.user.password ,category : categoryName });  
 
     fetch('/category/create', {
       method: 'POST',
@@ -81,6 +81,10 @@ class App extends Component {
       .catch(err => console.log('error sending the request:', err) )
   }
 
+
+
+
+  
   createNewUser(event){
     event.preventDefault();
     const inputFullName = document.getElementById('inputFullName').value;

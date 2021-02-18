@@ -38,6 +38,8 @@ app.get('/build/bundle.js',
     res.status(200).sendFile(path.resolve(__dirname, '../build/bundle.js'));
   });
 
+
+
 // handler for undefined routes
 app.use('*', (req, res) => {
   res.status(404).send('This is not the page you\'re looking for...');
@@ -57,62 +59,62 @@ app.listen(PORT, () => console.log('Listening on port 3000...'));
 //////////////// API CALL //////////////////////
 
 
-const internals = {
-  url: "https://api.taggun.io/api/receipt/v1/verbose/file",
-  filePath: ".receipt.jpg",
-  taggunApiKey: "4629ce0070d211eb89ec8f979872d304",
-};
+// const internals = {
+//   url: "https://api.taggun.io/api/receipt/v1/verbose/file",
+//   filePath: ".receipt.jpg",
+//   taggunApiKey: "4629ce0070d211eb89ec8f979872d304",
+// };
 
-(async () => {
-  const filePath = internals.filePath;
+// (async () => {
+//   const filePath = internals.filePath;
 
-  try {
-    const postBody = createFormData(filePath);
+//   try {
+//     const postBody = createFormData(filePath);
 
-    const response = await fetch(internals.url, {
-      headers: {
-        accept: "application/json",
-        apikey: internals.taggunApiKey,
-        contentType: getContentType(filePath),
-      },
-      method: "POST",
-      body: postBody,
-    });
+//     const response = await fetch(internals.url, {
+//       headers: {
+//         accept: "application/json",
+//         apikey: internals.taggunApiKey,
+//         contentType: getContentType(filePath),
+//       },
+//       method: "POST",
+//       body: postBody,
+//     });
 
-    const result = await response.json();
-    //price of receipt that was imported into the repository
-    console.log("price", result.totalAmount.data);
-  } catch (err) {
-    console.error(err);
-  }
-})();
+//     const result = await response.json();
+//     //price of receipt that was imported into the repository
+//     console.log("price", result.totalAmount.data);
+//   } catch (err) {
+//     console.error(err);
+//   }
+// })();
 
-function createFormData(filePath) {
-  const filename = path.basename(filePath);
-  const fileStream = fs.createReadStream(filePath, { autoClose: true });
-  const formData = new FormData();
+// function createFormData(filePath) {
+//   const filename = path.basename(filePath);
+//   const fileStream = fs.createReadStream(filePath, { autoClose: true });
+//   const formData = new FormData();
 
-  // Add any other POST properties that you require
-  // Go to https://api.taggun.io to see what other POST properties you require.
-  formData.append("file", fileStream, {
-    filename,
-    contentType: getContentType(filePath),
-  });
+//   // Add any other POST properties that you require
+//   // Go to https://api.taggun.io to see what other POST properties you require.
+//   formData.append("file", fileStream, {
+//     filename,
+//     contentType: getContentType(filePath),
+//   });
 
-  formData.append("refresh", "false");
+//   formData.append("refresh", "false");
 
-  return formData;
-}
+//   return formData;
+// }
 
-function getContentType(filePath) {
-  const fileExt = path.extname(filePath);
-  switch (fileExt.toLocaleLowerCase()) {
-    case ".png":
-      return "image/png";
-    case ".pdf":
-      return "application/pdf";
-    default:
-      return "image/jpg";
-  }
-}
+// function getContentType(filePath) {
+//   const fileExt = path.extname(filePath);
+//   switch (fileExt.toLocaleLowerCase()) {
+//     case ".png":
+//       return "image/png";
+//     case ".pdf":
+//       return "application/pdf";
+//     default:
+//       return "image/jpg";
+//   }
+// }
 

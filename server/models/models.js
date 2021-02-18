@@ -22,14 +22,7 @@ const userSchema = new Schema ({
   categories:  [{
     category: String, 
     total: Number,
-    items: [{
-      description: String,
-      // data: Buffer,
-      id: {
-        type: Schema.Types.ObjectId,
-        ref: 'item'
-      }
-    }], 
+    items: [], 
 
   }]
 })

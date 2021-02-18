@@ -4,20 +4,39 @@ const itemController = require('../controller/itemController');
 const multer = require("multer");
 const path = require('path');
 const {User} = require('../models/models');
-// router.post('/addRec',
-//   itemController.addItem,
-//   (req, res) => {
-//     return res.status(200).status.json({
-//       receipt: res.locals.receipt
-//     });
-//   }
-// );
+const categoryController = require('../controller/categoryController')
+const userController = require('../controller/userController');
+
+
+//SAVES TO PUBLIC/UPLOADS
 const storage = multer.diskStorage({
   destination: "./public/uploads/",
   filename: function(req, file, cb) {
     cb(null, "ReceiptImage-" + Date.now() + path.extname(file.originalname));
   }
 });
+
+router.post('/test',
+  userController.getUser,
+  categoryController.createCategory,
+  itemController.addItem,
+  (req, res) => {
+    // console.log('test results', req.body)
+    return res.status(200).json({
+      newReceiptAdded: res.locals.receipt
+    })
+  }
+)
+
+router.get('/retrieve',
+  itemController.getItem,
+  (req, res) => {
+    return res.status(200).json({
+      dataInfo: res.locals.dataInfo
+    })
+  }
+)
+
 
 const upload = multer({
   storage: storage,
