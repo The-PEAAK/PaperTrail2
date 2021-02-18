@@ -15,7 +15,8 @@ class Category extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      image: []
+      image: [],
+      price: 0,
     }
     this.onChangeFile = this.onChangeFile.bind(this);
     this.addItem = this.addItem.bind(this);
@@ -40,8 +41,7 @@ class Category extends Component {
     axios
       .post("/upload", formData, config)
       .then((response) => {
-        console.log("====================API PRICE BELOW===============");
-        console.log("YOOOOO THIS IS IT MAN", response.data);
+        this.setState( { ...this.state, price: response.data} );
       })
       .catch((err) => {
         console.log("error in POST request to send image to backend");
@@ -70,9 +70,9 @@ addItem(e) {
       'size'       : looped[i].size,
       'type'       : "image/png",
     }
-    // dataArr.push(files)
+    dataArr.push(files)
   }
-console.log('dataArr after loop', dataArr)
+// console.log('dataArr after loop', dataArr)
   const receiptRequest = JSON.stringify({email: this.props.state.user.email, password: this.props.state.user.password, category: catName, receiptData: dataArr});  
   fetch('/test', {
     method: 'POST',
@@ -81,7 +81,7 @@ console.log('dataArr after loop', dataArr)
   })
   .then(response => response.json())
   .then(result => {
-    console.log('addItem results: ', result);
+    // console.log('addItem results: ', result);
   })
   .catch(err => console.log('error sending the request:', err))
 };
