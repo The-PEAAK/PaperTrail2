@@ -44,62 +44,51 @@ const {fullName, password, userName, email, budget, categories} = req.body;
   //   err: `Error creating new user in db: ${err}`
   // }));}
 
-
-
-
+  userController.getUser = (req, res, next) => {
+    const queryObj = {
+      email: req.body.email,
+      password: req.body.password
+    };
+    // console.log('query obj >>> ', queryObj);
+    User.findOne(queryObj).exec()
+      .then(result => {
+        // console.log('Looking for user result => ', result);
+        res.locals.user = result;
+        return next();
+      })
+      .catch(error => next({
+        err: `Error looking for user in db: ${err}`
+      }));
+  
+  }
 
 
 //TODO: What to send back if user doesnt exist to authenticate
 // middelware function that looks for existing user and returns object with user information or null if not found.
-userController.getUser = (req, res, next) => {
-  const { email, password } = req.body
-  console.log(email, password)
-  User.findOne({email}, (err, user) => {
-    if(err) {
-      return next(err);
-    } else {
-      bcrypt.compare(password, user.password)
-        .then(result => {
-          console.log('result', result)
-          if(!result) {
-            return next(err)
-          } else {
-            console.log('user', user.password)
-            res.locals.user = user;
-            return next();
-          }
-        })
-        .catch(err => {
-          return next(err)
-        })
-      }
-    })
-}
-
-// userController.verifyUser = (req, res, next) => {
-//   const { username, password } = req.body;
-
-//   User.findOne({ username }, (err, user) => {
-//     if (err) {
-//       return next('Error in userController.verifyUser: ' + JSON.stringify(err))
-//     } else if(!user){
-//       res.redirect('/signup')
+// userController.getUser = (req, res, next) => {
+//   const { email, password } = req.body
+//   console.log(email, password)
+//   User.findOne({email}, (err, user) => {
+//     if(err) {
+//       return next(err);
 //     } else {
 //       bcrypt.compare(password, user.password)
 //         .then(result => {
+//           console.log('result', result)
 //           if(!result) {
-//             res.redirect('/signup');
+//             return next(err)
 //           } else {
+//             console.log('user', user.password)
 //             res.locals.user = user;
 //             return next();
 //           }
 //         })
 //         .catch(err => {
-//           return next('Error in userController.verifyUser: ' + JSON.stringify(err));
+//           return next(err)
 //         })
 //       }
 //     })
-// };
+// }
 
 
 

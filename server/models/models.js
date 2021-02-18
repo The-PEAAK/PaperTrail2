@@ -28,14 +28,14 @@ const userSchema = new Schema ({
   }]
 })
 
-userSchema.pre('save', function(next) {
-  bcrypt.hash(this.password, SALT_WORK_FACTOR, (err, hash) => {
-    if(err) return next(err);
-    this.password = hash;
-    return next();
-  });
-});
-// Example add category request 
+// userSchema.pre('save', function(next) {
+//   bcrypt.hash(this.password, SALT_WORK_FACTOR, (err, hash) => {
+//     if(err) return next(err);
+//     this.password = hash;
+//     return next();
+//   });
+// });
+// // Example add category request 
 
 // {
 //   type: 'shoes',
