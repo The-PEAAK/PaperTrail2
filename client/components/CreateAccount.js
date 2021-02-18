@@ -1,10 +1,15 @@
 import React, { Component, Fragment } from 'react';
 import { render } from 'react-dom';
+import Category from './Category'
 // import { useMediaQuery } from 'react-responsive';
 import "./styling.scss";
 // import logo from './logo.png';
 import {
-  Redirect
+  Redirect,
+  Route,
+  Link,
+  Switch,
+  BrowserRouter as Router,
 } from "react-router-dom";
 
 class CreateAccount extends Component {
@@ -19,6 +24,7 @@ class CreateAccount extends Component {
             <h1>Create Account</h1>
             {/* <img id='logo' src="logo.png"></img> */}
             </div>
+
           <form onSubmit={this.props.handleCreation}> 
               <input type="text" className="form-control" id="inputFullName" aria-describedby="fullNameHelp" placeholder="Full Name"/>
               <input type="text" className="form-control" id="inputUserName" aria-describedby="userNameHelp" placeholder="Username"/>
@@ -28,11 +34,21 @@ class CreateAccount extends Component {
               <button id="createacc" type="Submit" className='btn btn-secondary'  onClick={this.props.handleCreation}>Create Account</button>
               </div>
           </form>
+            <Link to = "/" style = {styles.container}>
+              <button className='btn btn-secondary' style = {styles.container}>
+                Back to Home
+              </button>
+            </Link>
         </div>
     );
   }
 }
 
-
+const styles = {
+  container: {
+    color: "white",
+    textDecoration: "none",
+  }
+}
 
 export default CreateAccount; 

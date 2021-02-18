@@ -45,9 +45,9 @@ categoryController.createCategory = (req, res, next) => {
     email: res.locals.user.email 
   };
 
-  console.log('Adding new category to user >>> ', res.locals.user.fullName);
+  // console.log('Adding new category to user >>> ', res.locals.user.fullName);
   let userCategories = res.locals.user.categories;
-  console.log('Existing categories ===> ',userCategories);
+  // console.log('Existing categories ===> ',userCategories);
   const newCategory = {
     category: req.body.category,
     total: 0,
@@ -58,14 +58,48 @@ categoryController.createCategory = (req, res, next) => {
   console.log('Updated categories array ===> ',userCategories)
   User.findOneAndUpdate(currentUserFilter, {categories: newCategories}, {new: true}).exec()
     .then(updatedUserDocument => {
-      console.log('Create new category => ', updatedUserDocument);
+      // console.log('Create new category => ', updatedUserDocument);
       res.locals.user = updatedUserDocument;
+      // console.log('res.locals.user in categoryController', res.locals.user.categories)
       return next();
     })
     .catch(err => next({
       err: `Err creating new category in db: ${err}` 
     }));
 }
+
+////////
+
+
+categoryController.createCategoryWithReceipt = (req, res, next) => {
+  // use userController.getUser to grab the user's existing categories first, then add a new category to that array
+  // now we weill add 1 more category to this user's document
+  const currentUserFilter = {
+    email: res.locals.user.email 
+  };
+
+  // console.log('Adding new category to user >>> ', res.locals.user.fullName);
+  let userCategories = res.locals.user.categories;
+  // console.log('Existing categories ===> ',userCategories);
+  const newCategory = {
+    category: req.body.category,
+    total: 0,
+  }; 
+
+  const newCategories = [...res.locals.user.categories, newCategory];
+  // console.log('Updated categories array ===> ',userCategories)
+  User.findOneAndUpdate(currentUserFilter, {categories: newCategories}, {new: true}).exec()
+    .then(updatedUserDocument => {
+      // console.log('Create new category => ', updatedUserDocument);
+      res.locals.user = updatedUserDocument;
+      // console.log('res.locals.user in categoryController', res.locals.user.categories)
+      return next();
+    })
+    .catch(err => next({
+      err: `Err creating new category in db: ${err}` 
+    }));
+}
+
 
 
 

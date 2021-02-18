@@ -4,14 +4,14 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Link
+  Link,
 } from 'react-router-dom';
 
 import Login from './Login';
 import CreateAccount from './CreateAccount';
 import Dashboard from './Dashboard';
 import Category from './Category'
-
+import Totals from './Totals';
 class App extends Component {
   constructor(props){
     super(props);
@@ -39,7 +39,7 @@ class App extends Component {
   addCategory(event){
     event.preventDefault();
     const categoryName = document.getElementById('newCategory').value;
-    const categoryRequest = JSON.stringify({email: this.state.user.email , password: this.state.user.password ,category : categoryName});  
+    const categoryRequest = JSON.stringify({email: this.state.user.email , password: this.state.user.password ,category : categoryName });  
 
     fetch('/category/create', {
       method: 'POST',
@@ -81,6 +81,10 @@ class App extends Component {
       .catch(err => console.log('error sending the request:', err) )
   }
 
+
+
+
+  
   createNewUser(event){
     event.preventDefault();
     const inputFullName = document.getElementById('inputFullName').value;
@@ -108,9 +112,10 @@ class App extends Component {
    }
   
   render() {
+    // console.log('props', this.props)
     return (
       <Router>
-        <div>
+        <div>        
           {/* A <Switch> looks through its children <Route>s and
               renders the first one that matches the current URL. */}
           <Switch>
@@ -132,6 +137,7 @@ class App extends Component {
                 <Category {...props} addCategory={this.addCategory} state={this.state}/>
               }
             />
+            <Route path = "/totals" component = {Totals} />
           </Switch>
         </div>
       </Router>

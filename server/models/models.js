@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
-
+const bcrypt = require('bcryptjs');
+const SALT_WORK_FACTOR = 10;
 
 const MONGO_URI = 'mongodb+srv://junebug:skate213@iteration.2rdbp.mongodb.net/Iteration?retryWrites=true&w=majority';
 
@@ -21,16 +22,18 @@ const userSchema = new Schema ({
   categories:  [{
     category: String, 
     total: Number,
-    items: [{
-      description: String,
-      id: {
-        type: Schema.Types.ObjectId,
-        ref: 'item'
-      }
-    }], 
+    items: [], 
 
   }]
 })
+
+// userSchema.pre('save', function(next) {
+//   bcrypt.hash(this.password, SALT_WORK_FACTOR, (err, hash) => {
+//     if(err) return next(err);
+//     this.password = hash;
+//     return next();
+//   });
+// });
 // Example add category request 
 
 // {

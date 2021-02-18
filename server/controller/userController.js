@@ -1,7 +1,7 @@
 // const { models } = require('mongoose');
 const { User, Category, Item } = require('../models/models');
 // const models = require('../models/models');
-
+const bcrypt = require('bcryptjs');
 const userController = {};
 
 
@@ -15,6 +15,30 @@ userController.validateUser = (req, res, next) => {
   }
   return next();
 }
+  // const { email, password } = req.body;
+  // User.findOne({ email, password }, (err, user) => {
+  //   if (err) {
+  //     return next('Error in userController.verifyUser: ' + JSON.stringify(err))
+  //   } else {
+  //     bcrypt.compare(password, newUser.password)
+  //       .then(result => {
+  //         if(!result) {
+  //           return next({err: 'Invalid request'})
+  //         } else {
+  //           res.locals.user = user;
+  //           return next();
+  //         }
+  //       })
+  //       .catch(err => {
+  //         return next('Error in userController.verifyUser: ' + JSON.stringify(err));
+  //       })
+  //     }
+  //   })
+
+
+
+  
+
 
 
 // middleware function that creates new user
@@ -31,7 +55,7 @@ userController.createUser = (req, res, next) => {
   
   User.create(queryObj)
   .then(result => {
-    console.log('Creating new user => ', result);
+    // console.log('Creating new user => ', result);
     res.locals.newUser = result;
     return next();
   })
@@ -51,7 +75,7 @@ userController.getUser = (req, res, next) => {
   // console.log('query obj >>> ', queryObj);
   User.findOne(queryObj).exec()
     .then(result => {
-      console.log('Looking for user result => ', result);
+      // console.log('Looking for user result => ', result);
       res.locals.user = result;
       return next();
     })
