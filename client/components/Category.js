@@ -167,7 +167,6 @@ render() {
         
         <form >
             <input type="text" id="newCategory" className="form-control" aria-describedby="passwordHelpInline" placeholder="Category Name" onSubmit={this.props.addCategory}/>
-            <input type="text" id="budgetValue" className="form-control" aria-describedby="passwordHelpInline" placeholder="Budget Allocation" onChange={this.addBudget}/>
             <button id="newCat" type="submit" className='btn btn-primary' onClick={this.props.addCategory} >
               <p>Create New Category</p>
             </button>
