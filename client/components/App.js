@@ -36,10 +36,12 @@ class App extends Component {
     this.addCategory = this.addCategory.bind(this);
   };
 
+
+
   addCategory(event){
     event.preventDefault();
     const categoryName = document.getElementById('newCategory').value;
-    const categoryRequest = JSON.stringify({email: this.state.user.email , password: this.state.user.password ,category : categoryName });  
+    const categoryRequest = JSON.stringify({email: this.state.user.email , password: this.state.user.password, category : categoryName });  
 
     fetch('/category/create', {
       method: 'POST',
@@ -85,12 +87,10 @@ class App extends Component {
     const inputUserName = document.getElementById('inputUserName').value;
     const inputEmail = document.getElementById('inputEmail').value;
     const inputPassword = document.getElementById('inputPassword').value;
-    const inputBudget = document.getElementById('inputBudget').value;
     const userRequest = JSON.stringify({
       fullName: inputFullName,
       password: inputPassword,
       userName: inputUserName,
-      budget: inputBudget,
       email: inputEmail})
     fetch('/user/create', {
       method: 'POST',
@@ -133,7 +133,7 @@ class App extends Component {
                 <Category {...props} addCategory={this.addCategory} state={this.state}/>
               }
             />
-            <Route path = "/totals" component = {Totals} />
+            {/* <Route path = "/totals" component = {Totals} /> */}
           </Switch>
         </div>
       </Router>

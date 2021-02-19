@@ -17,10 +17,10 @@ userController.validateUser = (req, res, next) => {
 // middleware function that creates new user
 userController.createUser = (req, res, next) => {
 
-const {fullName, password, userName, email, budget, categories} = req.body;
+const {fullName, password, userName, email, categories} = req.body;
   //TODO: For login, if we authenticate we will send back the existing user object.
   
-  User.create({fullName, password, userName, email, budget, categories}, (err, user) => {
+  User.create({fullName, password, userName, email, categories}, (err, user) => {
     if(err) {
       // return next(err);
       console.log(err)

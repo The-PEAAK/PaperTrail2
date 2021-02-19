@@ -104,7 +104,7 @@ $background-color: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 35%
 body{
   background: #43C6AC;  /* fallback for old browsers */
   background: -webkit-linear-gradient(to right, #191654, #43C6AC);  /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(90deg, navy, #43C6AC, navy ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  background: linear-gradient(0.25turn, navy, whitesmoke, navy) /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 
 // ------- Landing Page Styling
@@ -123,7 +123,7 @@ body{
   color: coral;
   margin: 5% 5%;
   padding: 50px;
-  box-shadow: 2px 2px 5px cyan;
+  box-shadow: 3px 3px 10px #737373;
   border: thin solid white;
 }
 
@@ -193,19 +193,27 @@ header {
 }
 
 #titleBox {
-  flex: 1;
+  // border: thin solid red;
+  flex: 6;
   display: flex;
   flex-direction: row;
+  justify-content: flex-end;
+  text-align: end;
 }
 
-#banner {
-  flex: 1;
-  // border: thin solid red;
+#banner, #miniBanner {
+  // border: thin solid blue;
   font-family: 'Nanum Pen Script', cursive;
   color: white;
   font-size: 54px;
-  text-align: end;
-  margin-right: 5%;
+ 
+}
+
+#miniBanner {
+  flex: 1;
+  font-size: 14px;
+  margin-right: 1%;
+  text-decoration: none;
 }
 
 #createTop {
@@ -230,7 +238,6 @@ input {
 #submission {
   flex: 1;
   color: white;
-  
 }
 
 
@@ -265,6 +272,10 @@ input {
   color: white;
 }
 
+#cats {
+  color: black;
+}
+
 #receiptContainer {
   flex: 4;
   
@@ -272,22 +283,13 @@ input {
   flex-flow: row wrap;
   border: thin solid black;
   background-color: lightgrey;
-  box-shadow: 2px 2px 5px cyan;
+  box-shadow: 2px 2px 5px #737373;
   max-width: 90%;
 }
 
-#newReceipt {
-  flex: 4;
-  margin: 5px;
-  color: white;
-}
-
-// .fileContainer {
-//   background: red;
-// }
-
-#save {
-  color: white;
+.saveButton {
+  color: black;
+  max-width: 150px;
 }
 
 #totalsButton {
@@ -311,13 +313,14 @@ width: 180px;
 
 $margin: 15px;
 
+//color of button/////////////////////////////
 button {
   justify-items: center;
   margin: $margin;
   width: 100%;
-  background: linear-gradient(0.25turn, darkblue, gray, darkblue);
+  background: whitesmoke;
   &:hover {
-    background: blue;
+    background: lightsteelblue;
   }
 }
 input {
@@ -330,4 +333,6 @@ input {
 //   }
 // }
 
-
+#cats {
+  color: #737373;
+}
