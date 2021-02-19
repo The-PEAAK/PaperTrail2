@@ -125,9 +125,13 @@ render() {
 
     return (
       <div id='all'>
+        
         <div id='top'>
           <h1>Welcome {this.props.state.user.userName}!</h1>
+        
+        
         </div>
+        
         <form>
             <input type="text" id="newCategory" className="form-control" aria-describedby="passwordHelpInline" placeholder="Category Name" onSubmit={this.props.addCategory}/>
             <button id="newCat" type="submit" className='btn btn-primary' onClick={this.props.addCategory} >
@@ -135,15 +139,21 @@ render() {
             </button>
            
         </form>
+
         <div id="mid">
         <h1>Your Categories:</h1>
-        </div>
-           <div>
+        </div >
+
+        <div id="receiptContainer">
+            <div>
               {arrOfCategories}
-              <button className='btn btn-primary'>
-                <Link to = "/totals" style = {styles.container}>Totals</Link>
-            </button>
             </div>
+            <div>
+              <button className='btn btn-primary'>
+              <Link to = "/totals" style = {styles.container}>Totals</Link>
+              </button>
+            </div>
+        </div>
             {/* <Link to = "/"> 
               <button className = "btn btn-secondary">
                 Logout

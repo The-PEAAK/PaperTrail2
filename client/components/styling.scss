@@ -1,5 +1,91 @@
 
 
+// // @media screen and (max-width:767.98px){
+// //   body{
+// //       display: flex;
+// //       flex-direction: column;
+// //       justify-content: space-between;
+// //       align-items: center;
+// //       background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 35%, rgba(0,212,255,1) 100%);
+// //   }
+// // }
+// // * {
+// //   box-sizing: border-box;
+// // }
+
+// $background-color: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 35%, rgba(0,212,255,1) 100%);
+
+// body{
+//   display: flex;
+//   flex-direction: column;
+//   justify-content: space-between;
+//   align-items: center;
+//   background: #43C6AC;  /* fallback for old browsers */
+//   background: -webkit-linear-gradient(to right, #191654, #43C6AC);  /* Chrome 10-25, Safari 5.1-6 */
+//   background: linear-gradient(to left, #191654, #43C6AC); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+// }
+
+// #top {
+//   display:grid;
+//   justify-items: center;
+//   color: white;
+//   margin-top: 15%;
+// }
+
+// #mid {
+//   display:grid;
+//   justify-items: center;
+//   margin-top: 15%;
+//   color: white;
+// }
+
+
+// img {
+// display:grid;
+// justify-items: center;
+// margin-top: 35%;
+// margin-bottom: 10%;
+// height: 180px;
+// width: 180px;
+// // background:transparent;
+// // position: relative;
+
+// //     overflow: hidden;
+// }
+
+
+// $margin: 15px;
+
+// input {
+//   margin: $margin;
+// }
+
+// // @media (hover: hover) {
+// //   button {
+// //       color: rebeccapurple;
+// //   }
+// // }
+
+// button {
+//   display:grid;
+//   justify-items: center;
+//   margin: $margin;
+//   width: 100%;
+//   &:hover {
+//     background: #0d6efd;
+//   }
+// }
+
+
+// #log{
+//   background-color: green;
+// }
+// #createacc {
+//   background-color: lightblue;
+// }
+
+
+
 // @media screen and (max-width:767.98px){
 //   body{
 //       display: flex;
@@ -16,46 +102,224 @@
 $background-color: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 35%, rgba(0,212,255,1) 100%);
 
 body{
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
   background: #43C6AC;  /* fallback for old browsers */
   background: -webkit-linear-gradient(to right, #191654, #43C6AC);  /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(to left, #191654, #43C6AC); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  background: linear-gradient(90deg, navy, #43C6AC, navy ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+// ------- Landing Page Styling
+#allLogin {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 768px;
 }
 
 #top {
-  display:grid;
-  justify-items: center;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: coral;
+  margin: 5% 5%;
+  padding: 50px;
+  box-shadow: 2px 2px 5px cyan;
+  border: thin solid white;
+}
+
+#top > h1 {
+  font-family:serif;
+  -webkit-text-stroke: 1px black;
+  font-size: 48px;
+  font-weight: 400;
+}
+
+// #logo {
+//   // padding-left: 25px;
+// }
+
+#logForm {
+  flex: 1;
+  min-width: 25%;
+  max-width: 60%;
+  padding-right: 2%;
+}
+
+#log {
+  background-color: green;
+}
+
+#landingFooter {
+  flex: 1;
+  justify-content: end;
+  margin-top: 100px;
+  padding-left: 50%;
+  // border: thin solid black;
+  font-family: 'Nanum Pen Script', cursive;
   color: white;
-  margin-top: 15%;
+}
+
+// ------- Create Account Styling
+#allCreate {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+header {
+  flex: 1;
+  border-bottom: thin solid white;
+  display: flex;
+  width: 100%;
+  align-items: flex-end;
+}
+
+#home {
+  flex: 1;
+  display: flex;
+  flex-direction: row;
+  align-content: flex-start;
+}
+
+#homeButton {
+  flex: 1;
+  max-width: 75px;
+  max-height: 25px;
+  background: lightgray;
+  border: thin solid black;
+  box-shadow: 1px 1px 3px white;
+  color: navy;
+  font-size: 10px;
+}
+
+#titleBox {
+  flex: 1;
+  display: flex;
+  flex-direction: row;
+}
+
+#banner {
+  flex: 1;
+  // border: thin solid red;
+  font-family: 'Nanum Pen Script', cursive;
+  color: white;
+  font-size: 54px;
+  text-align: end;
+  margin-right: 5%;
+}
+
+#createTop {
+  flex: 1;
+  font-family:serif;
+  font-size: 28px;
+  color: coral;
+  -webkit-text-stroke: 1px black;
+  margin-top: 10%;
+  padding-left: 2%;
+}
+
+#createForm {
+  flex: 1;
+  min-width: 25%;
+}
+
+input {
+  text-align: center;
+}
+
+#submission {
+  flex: 1;
+  color: white;
+  
+}
+
+
+// ------- Main Page Styling
+#allMain {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#mainTop {
+  flex: 1;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  margin-top: 10%;
+}
+
+#mainTop > h1 {
+  color: coral;
+  font-family:serif;
+  -webkit-text-stroke: 1px black;
+  // padding-left: 3%;
 }
 
 #mid {
-  display:grid;
-  justify-items: center;
-  margin-top: 15%;
+  flex: 1;
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: flex-start;
+  // justify-items: ;
+  // margin-top: 15%;
   color: white;
+}
+
+#receiptContainer {
+  flex: 4;
+  
+  display: flex;      
+  flex-flow: row wrap;
+  border: thin solid black;
+  background-color: lightgrey;
+  box-shadow: 2px 2px 5px cyan;
+  max-width: 90%;
+}
+
+#newReceipt {
+  flex: 4;
+  margin: 5px;
+  color: white;
+}
+
+// .fileContainer {
+//   background: red;
+// }
+
+#save {
+  color: white;
+}
+
+#totalsButton {
+  flex: 1;
+}
+
+#logout {
+ flex: 1 ;
 }
 
 
 img {
 display:grid;
 justify-items: center;
-margin-top: 35%;
+margin-top: 25%;
 margin-bottom: 10%;
 height: 180px;
 width: 180px;
-// background:transparent;
-// position: relative;
-
-//     overflow: hidden;
 }
 
 
 $margin: 15px;
 
+button {
+  justify-items: center;
+  margin: $margin;
+  width: 100%;
+  background: linear-gradient(0.25turn, darkblue, gray, darkblue);
+  &:hover {
+    background: blue;
+  }
+}
 input {
   margin: $margin;
 }
@@ -66,21 +330,4 @@ input {
 //   }
 // }
 
-button {
-  display:grid;
-  justify-items: center;
-  margin: $margin;
-  width: 100%;
-  &:hover {
-    background: #0d6efd;
-  }
-}
-
-
-#log{
-  background-color: green;
-}
-#createacc {
-  background-color: lightblue;
-}
 
