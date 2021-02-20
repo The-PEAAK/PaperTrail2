@@ -17,11 +17,13 @@ class Category extends Component {
     this.state = {
       image: [],
       price: 0,
+      budget: 0,
     }
     this.onChangeFile = this.onChangeFile.bind(this);
     this.addItem = this.addItem.bind(this);
     this.receiptSubmit = this.receiptSubmit.bind(this);
     this.onChange = this.onChange.bind(this);
+    this.addBudget = this.addBudget.bind(this);
   }
 
   receiptSubmit(e) {
@@ -32,16 +34,16 @@ class Category extends Component {
     const file = this.state.file;
     formData.append("receiptImage", file);
 
-    // console.log("formData", formData);
     const config = {
       headers: {
         "content-type": "multipart/form-data",
       },
     };
-    axios
-      .post("/upload", formData, config)
+    axios.post("/upload", formData, config)
       .then((response) => {
-        this.setState( { ...this.state, price: response.data} );
+        const totalPrice = this.state.price + response.data;
+        console.log("=======price read========", response.data);
+        this.setState( { ...this.state, price: totalPrice} );
       })
       .catch((err) => {
         console.log("error in POST request to send image to backend");
@@ -56,7 +58,7 @@ class Category extends Component {
   }
 
 addItem(e) {
-  e.preventDefault();
+  e.preventDefault(); 
   let files = {};
   let dataArr = [];
   const catName = document.getElementById('newCategory').value;
@@ -92,63 +94,100 @@ onChangeFile(receipt) {
   })
 }
 
+addBudget(event) {
+  event.preventDefault;
+  const budgetValue = document.getElementById('newBudget').value;
+  console.log(budgetValue, "budget value=======================================");
+  this.setState({ ...this.state, budget: budgetValue });
+}
+
 render() {
   let arrOfCategories= [];
   const categories = this.props.state.user.categories;
   for (let i=0; i < categories.length; i++) {
     arrOfCategories.push(
-    
-    <form onSubmit={this.receiptSubmit}>
-      <button> 
-      <input
-        id='addPic'
-        name='receiptImage'
-        type='file'
-        onChange={this.onChange}
-      />
-        {categories[i].category}
-        <ImageUploader
-              key = {`imgUploader${i}`}
-              withIcon={false}
-              withPreview={true}
-              label=''
-              buttonText='Upload Receipt'
-              onChange={this.onChangeFile}
-              imgExtension={[".jpg", ".gif", ".png", ".gif", ".svg"]}
-              maxFileSize={1000000}
+    <div>
+      <form onSubmit={this.receiptSubmit}>
+        <button>
+          <div id="budgetDisplay">
+            {/* <div>
+            Allocated Budget: {this.state.budget}
+            </div> */}
+            <div>
+            Total Spent: {this.state.price}
+            </div>
+          </div>
+          {categories[i].category}
+          {/*this is the 'upload image' tage*/ }
+          <ImageUploader 
+            key = {`imgUploader${i}`}
+            withIcon={false}
+            withPreview={true}
+            label=''
+            buttonText='Upload Receipt'
+            onChange={this.onChangeFile}
+            imgExtension={[".jpg", ".gif", ".png", ".gif", ".svg"]}
+            maxFileSize={1000000}
             />
-        <button onClick = {this.addItem}>Save</button>
-    </button>
-    </form>
+          <button className="saveButton" onClick = {this.addItem}>Save Receipt</button>
+          {/*this is the 'choose file' button*/ } 
+          <input
+            id='addPic'
+            name='receiptImage'
+            type='file'
+            onChange={this.onChange}
+          />
+      </button>
+      </form>
+    </div>
     )
   };
 
     return (
-      <div id='all'>
-        <div id='top'>
-          <h1>Welcome {this.props.state.user.userName}!</h1>
+      <div id='allMain'>
+          <header>
+            <Link id="home" to = "/" style = {styles.container}>
+              <button className='btn btn-secondary' style = {styles.container} id="homeButton">
+                Home
+              </button>
+            </Link>
+            
+            <div id="titleBox">
+              <span id="banner">paperTrail</span>
+            </div>
+            <a id="miniBanner" href="https://github.com/The-PEAAK/PaperTrail2">refactored by catSnake!</a>
+          </header>        
+
+        
+        <div id='mainTop'>
+          <h1>{this.props.state.user.userName}'s Dashboard</h1>
+
+
         </div>
-        <form>
+        
+        <form >
             <input type="text" id="newCategory" className="form-control" aria-describedby="passwordHelpInline" placeholder="Category Name" onSubmit={this.props.addCategory}/>
             <button id="newCat" type="submit" className='btn btn-primary' onClick={this.props.addCategory} >
               <p>Create New Category</p>
             </button>
            
         </form>
+
         <div id="mid">
-        <h1>Your Categories:</h1>
-        </div>
-           <div>
+          <h1 id="cats">Your Categories:</h1>
+        </div >
+
+        <div id="receiptContainer">
+            <div id="categoryBox">
               {arrOfCategories}
-              <button className='btn btn-primary'>
-                <Link to = "/totals" style = {styles.container}>Totals</Link>
-            </button>
             </div>
-            {/* <Link to = "/"> 
-              <button className = "btn btn-secondary">
-                Logout
-              </button>
-            </Link> */}
+            
+            {/* <div id="buttonBox"> */}
+              {/* <button className='btn btn-primary'>
+              <Link to = "/totals" style = {styles.container}>Totals</Link>
+              </button> */}
+            {/* </div> */}
+        </div>
       </div>
     );
   }
